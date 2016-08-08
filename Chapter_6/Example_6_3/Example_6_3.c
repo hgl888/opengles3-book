@@ -35,6 +35,9 @@
 //    and a constant vertex attribute
 //
 #include "esUtil.h"
+#ifdef ANDROID
+#include <android/log.h>
+#endif
 
 typedef struct
 {
@@ -84,6 +87,14 @@ int Init ( ESContext *esContext )
 
    // Store the program object
    userData->programObject = programObject;
+
+   ESMatrix mat1, mat2, mat3;
+      __android_log_print ( ANDROID_LOG_INFO, "esUtil" , "%s", "Begin" );
+   int i = 0;
+   for( i = 0; i < 2000; i++ ){
+      esMatrixMultiply( &mat1, &mat2, &mat3);
+   }
+   __android_log_print ( ANDROID_LOG_INFO, "esUtil" , "%s", "end" );
 
    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
    return GL_TRUE;
