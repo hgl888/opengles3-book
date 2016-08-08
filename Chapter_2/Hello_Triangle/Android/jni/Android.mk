@@ -1,5 +1,5 @@
 LOCAL_PATH			:= $(call my-dir)
-SRC_PATH			:= ../..
+SRC_PATH			:= ./../..
 COMMON_PATH			:= $(SRC_PATH)/../../Common
 COMMON_INC_PATH		:= $(COMMON_PATH)/Include
 COMMON_SRC_PATH		:= $(COMMON_PATH)/Source
@@ -21,7 +21,7 @@ LOCAL_SRC_FILES := $(COMMON_SRC_PATH)/esShader.c \
 				   
 
 LOCAL_C_INCLUDES	:= $(SRC_PATH) \
-					   $(COMMON_INC_PATH)
+				   $(COMMON_INC_PATH)
 				   
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv3
 
