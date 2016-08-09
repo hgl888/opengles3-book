@@ -44,6 +44,10 @@ typedef struct
 
 } UserData;
 
+void printUniforms(){
+ 
+}
+
 ///
 // Create a shader object, load the shader source, and
 // compile the shader.
@@ -167,6 +171,51 @@ int Init ( ESContext *esContext )
    userData->programObject = programObject;
 
    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
+    
+    //////////////
+    GLint maxUniformLen;
+    GLint numUniforms;
+    char *uniformName;
+    GLint index;
+    
+    glGetProgramiv(programObject, GL_ACTIVE_UNIFORMS, &numUniforms );
+    glGetProgramiv(programObject, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformLen );
+    uniformName = malloc( sizeof( char) * maxUniformLen );
+    for( index = 0; index < numUniforms; ++index ){
+        GLint size;
+        GLenum type;
+        GLint location;
+        glGetActiveUniform(programObject, index, maxUniformLen, NULL, &size, &type, uniformName );
+        location = glGetUniformLocation( programObject,  uniformName );
+        switch ( type ) {
+            case GL_FLOAT:
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    ///////////
+    GLuint blockId, bufferId;
+    GLint blockSize;
+    GLuint bindingPoint = 1;
+    GLfloat lightData [] = {
+        1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
+    
+    blockId = glGetUniformBlockIndex(programObject, "LightBlock");
+    glUniformBlockBinding(programObject, blockId, bindingPoint );
+    glGetActiveUniformBlockiv(programObject, blockId, GL_UNIFORM_BLOCK_DATA_SIZE, &blockSize);
+    
+    glGenBuffers(1, &bufferId);
+    glBindBuffer(GL_UNIFORM_BUFFER, bufferId );
+    glBufferData( GL_UNIFORM_BUFFER, blockSize, lightData, GL_DYNAMIC_DRAW );
+    
+    glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, bufferId);
+    
    return TRUE;
 }
 
