@@ -88,6 +88,7 @@ int Init ( ESContext *esContext )
    // Store the program object
    userData->programObject = programObject;
 
+#ifdef ANDROID
    ESMatrix mat1, mat2, mat3;
       __android_log_print ( ANDROID_LOG_INFO, "esUtil" , "%s", "Begin" );
    int i = 0;
@@ -95,7 +96,8 @@ int Init ( ESContext *esContext )
       esMatrixMultiply( &mat1, &mat2, &mat3);
    }
    __android_log_print ( ANDROID_LOG_INFO, "esUtil" , "%s", "end" );
-
+#endif
+    
    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
    return GL_TRUE;
 }

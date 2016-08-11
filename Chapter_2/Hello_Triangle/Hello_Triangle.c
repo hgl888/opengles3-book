@@ -172,6 +172,10 @@ int Init ( ESContext *esContext )
 
    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
     
+    //////////
+    GLint maxVertexAttribs;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &maxVertexAttribs);
+    
     //////////////
     GLint maxUniformLen;
     GLint numUniforms;
