@@ -156,6 +156,11 @@ int Init ( ESContext *esContext )
    glBindBuffer ( GL_ARRAY_BUFFER, 0 );
 
    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
+    
+    glEnable( GL_CULL_FACE );
+    glCullFace( GL_FRONT );
+    glFrontFace( GL_CCW );
+    
    return GL_TRUE;
 }
 

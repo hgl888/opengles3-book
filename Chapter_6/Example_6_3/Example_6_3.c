@@ -119,7 +119,10 @@ void Draw ( ESContext *esContext )
 
    glViewport ( 0, 0, esContext->width, esContext->height );
 
-   glClear ( GL_COLOR_BUFFER_BIT );
+    const float polygonOffsetFactor = -1.0f;
+    const float polygonOffsetUnits = -2.0f;
+    
+   glClear ( GL_COLOR_BUFFER_BIT  | GL_DEPTH_BUFFER_BIT );
 
    glUseProgram ( userData->programObject );
 
@@ -129,6 +132,11 @@ void Draw ( ESContext *esContext )
 
 
    glDrawArrays ( GL_TRIANGLES, 0, 3 );
+    
+    glDepthFunc( GL_LEQUAL );
+    glEnable( GL_POLYGON_OFFSET_FILL );
+    glPolygonOffset( polygonOffsetFactor, polygonOffsetUnits );
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 
    glDisableVertexAttribArray ( 1 );
 }
