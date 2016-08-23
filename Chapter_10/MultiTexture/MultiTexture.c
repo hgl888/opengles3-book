@@ -136,6 +136,11 @@ int Init ( ESContext *esContext )
    }
 
    glClearColor ( 1.0f, 1.0f, 1.0f, 0.0f );
+   ///////////
+    GLint maxTextureImageUnits;
+    GLint maxFragmentUniformVectors;
+    glGetIntegerv( GL_MAX_TEXTURE_IMAGE_UNITS, &maxTextureImageUnits );
+    glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &maxFragmentUniformVectors );
    return TRUE;
 }
 
