@@ -104,6 +104,7 @@ int Init ( ESContext *esContext )
       "{                                          \n"
       "   gl_Position = a_position;               \n"
       "   v_texCoord = a_texCoord;                \n"
+      "   gl_PointSize = 200.0;                   \n"
       "}                                          \n";
 
    char fShaderStr[] =
@@ -114,7 +115,7 @@ int Init ( ESContext *esContext )
       "uniform sampler2D s_texture;                        \n"
       "void main()                                         \n"
       "{                                                   \n"
-      "  outColor = texture( s_texture, v_texCoord );      \n"
+      "  outColor = texture( s_texture, gl_PointCoord );   \n"
       "}                                                   \n";
 
    // Load the shaders and get a linked program object
@@ -173,7 +174,8 @@ void Draw ( ESContext *esContext )
    // Set the sampler texture unit to 0
    glUniform1i ( userData->samplerLoc, 0 );
 
-   glDrawElements ( GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indices );
+//   glDrawElements ( GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indices );
+    glDrawArrays ( GL_POINTS, 0, 6 );
 }
 
 ///
