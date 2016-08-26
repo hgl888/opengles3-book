@@ -179,8 +179,7 @@ void DrawGeometry ( ESContext *esContext )
    glUseProgram ( userData->programObject );
 
    // Load the vertex position
-   glVertexAttribPointer ( 0, 3, GL_FLOAT,
-                           GL_FALSE, 3 * sizeof ( GLfloat ), vVertices );
+   glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof ( GLfloat ), vVertices );
    glEnableVertexAttribArray ( 0 );
 
    // Draw a quad

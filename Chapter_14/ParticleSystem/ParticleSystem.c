@@ -166,7 +166,7 @@ int Init ( ESContext *esContext )
       float *particleData = &userData->particleData[i * PARTICLE_SIZE];
 
       // Lifetime of particle
-      ( *particleData++ ) = ( ( float ) ( rand() % 10000 ) / 10000.0f );
+      ( *particleData++ ) = ( ( float ) ( rand() % 10000 ) / 100.0f );
 
       // End position of particle
       ( *particleData++ ) = ( ( float ) ( rand() % 10000 ) / 5000.0f ) - 1.0f;
@@ -204,7 +204,7 @@ void Update ( ESContext *esContext, float deltaTime )
 
    glUseProgram ( userData->programObject );
 
-   if ( userData->time >= 1.0f )
+   if ( userData->time >= 10.0f )
    {
       float centerPos[3];
       float color[4];
