@@ -138,7 +138,7 @@ void Draw ( ESContext *esContext )
     glPolygonOffset( polygonOffsetFactor, polygonOffsetUnits );
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
-   glDisableVertexAttribArray ( 1 );
+   glDisableVertexAttribArray ( 0 );
 }
 
 void Shutdown ( ESContext *esContext )
